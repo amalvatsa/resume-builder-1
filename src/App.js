@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Homepage from "./components/Homepage";
 
 function App() {
+  const [currentSection, setCurrentSection] = useState(0);
+
+  const incrementCurrentSection = () => {
+    setCurrentSection((prevValue) => prevValue + 1);
+  };
+
+  const decrementCurrentSection = () => {
+    setCurrentSection((prevValue) => prevValue + 1);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {currentSection === 0 && <Homepage nextPage={incrementCurrentSection} />}
+      {currentSection === 1 && <div>Hellooo</div>}
     </div>
   );
 }
