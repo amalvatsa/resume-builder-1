@@ -3,6 +3,8 @@ import Homepage from "./components/Homepage";
 import BasicDetails from "./components/BasicDetails/BasicDetails";
 import WorkHistory from "./components/WorkHistory/WorkHistory";
 import EducationMain from "./components/Education/EducationMain";
+import TechnologiesMain from "./components/Technologies/TechnologiesMain";
+import CertificationsMain from "./components/Certifications/CertificationsMain";
 
 function App() {
   const [currentSection, setCurrentSection] = useState(0);
@@ -45,6 +47,33 @@ function App() {
       eduDescription: "",
     },
   ]);
+
+  const [technologiesData, setTechnologiesData] = useState([
+    {
+      id: 1,
+      technology: "",
+      project: "",
+      demoLink: "",
+      repoLink: "",
+      additionalDetails: "",
+    },
+  ]);
+
+  const [certificationsData, setCertificationsData] = useState([
+    {
+      id: 1,
+      certificateTitle: "",
+      certifyingOrg: "",
+    },
+  ]);
+
+  const incrementCurrentSection = () => {
+    setCurrentSection((prevValue) => prevValue + 1);
+  };
+
+  const decrementCurrentSection = () => {
+    setCurrentSection((prevValue) => prevValue - 1);
+  };
 
   const handleBasicDataChange = (event) => {
     setBasicData((prevData) => {
@@ -97,14 +126,6 @@ function App() {
     });
   };
 
-  const incrementCurrentSection = () => {
-    setCurrentSection((prevValue) => prevValue + 1);
-  };
-
-  const decrementCurrentSection = () => {
-    setCurrentSection((prevValue) => prevValue - 1);
-  };
-
   const handleAddEduSection = (id) => {
     setEducationData((prevData) => {
       return [
@@ -130,6 +151,67 @@ function App() {
 
   const handleEduDataChange = (event, id) => {
     setEducationData((prevData) => {
+      return prevData.map((object) =>
+        object.id === id
+          ? { ...object, [event.target.name]: event.target.value }
+          : object
+      );
+    });
+  };
+
+  const handleAddTechSection = (id) => {
+    setTechnologiesData((prevData) => {
+      return [
+        ...prevData,
+        {
+          id: id,
+          technology: "",
+          project: "",
+          demoLink: "",
+          repoLink: "",
+          additionalDetails: "",
+        },
+      ];
+    });
+  };
+
+  const handleRemoveLastTechSection = (id) => {
+    setTechnologiesData((prevValue) =>
+      prevValue.filter((object) => object.id !== id)
+    );
+  };
+
+  const handleTechDataChange = (event, id) => {
+    setTechnologiesData((prevData) => {
+      return prevData.map((object) =>
+        object.id === id
+          ? { ...object, [event.target.name]: event.target.value }
+          : object
+      );
+    });
+  };
+
+  const handleAddCertSection = (id) => {
+    setCertificationsData((prevData) => {
+      return [
+        ...prevData,
+        {
+          id: id,
+          certificateTitle: "",
+          certifyingOrg: "",
+        },
+      ];
+    });
+  };
+
+  const handleRemoveLastCertSection = (id) => {
+    setCertificationsData((prevValue) =>
+      prevValue.filter((object) => object.id !== id)
+    );
+  };
+
+  const handleCertDataChange = (event, id) => {
+    setCertificationsData((prevData) => {
       return prevData.map((object) =>
         object.id === id
           ? { ...object, [event.target.name]: event.target.value }
@@ -167,6 +249,25 @@ function App() {
           handleAddSection={handleAddEduSection}
           handleRemoveLastSection={handleRemoveLastEduSection}
           onChange={handleEduDataChange}
+        />
+      )}
+      {currentSection === 4 && (
+        <TechnologiesMain
+          nextPage={incrementCurrentSection}
+          prevPage={decrementCurrentSection}
+          technologiesData={technologiesData}
+          handleAddSection={handleAddTechSection}
+          handleRemoveLastSection={handleRemoveLastTechSection}
+          onChange={handleTechDataChange}
+        />
+      )}
+      {currentSection === 5 && (
+        <CertificationsMain
+          prevPage={decrementCurrentSection}
+          certificationsData={certificationsData}
+          handleAddSection={handleAddCertSection}
+          handleRemoveLastSection={handleRemoveLastCertSection}
+          onChange={handleCertDataChange}
         />
       )}
     </div>
