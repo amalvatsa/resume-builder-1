@@ -48,7 +48,7 @@ const Navbar = ({
             component="div"
             sx={{ flexGrow: 1, ml: 1, fontFamily: "Inter, sans-serif" }}
           >
-            Amal Vatsa 21BCE3194 Puja Maheshwari 21BCE31972
+            Amal Vatsa 21BCE3194|Puja Maheshwari 21BCE31972|Alita Rajesh 21BCE2967
           </Typography>
           
         </Toolbar>
