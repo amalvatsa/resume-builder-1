@@ -42,42 +42,15 @@ const Navbar = ({
           >
             ResFast
           </Typography>
-          {!isLoggedIn && (
-            <Button
-              color="inherit"
-              sx={{ fontFamily: "Inter, sans-serif" }}
-              onClick={handleSignUpClick}
-            >
-              Sign Up
-            </Button>
-          )}
-          {!isLoggedIn && (
-            <Button
-              color="inherit"
-              sx={{ fontFamily: "Inter, sans-serif" }}
-              onClick={handleLoginClick}
-            >
-              Login
-            </Button>
-          )}
-          {isLoggedIn && !savedResumesSection && (
-            <Button
-              color="inherit"
-              sx={{ fontFamily: "Inter, sans-serif" }}
-              onClick={handleShowSavedResumes}
-            >
-              Saved Resumes
-            </Button>
-          )}
-          {isLoggedIn && savedResumesSection && (
-            <Button
-              color="inherit"
-              sx={{ fontFamily: "Inter, sans-serif" }}
-              onClick={handleCloseSavedResumes}
-            >
-              Go back
-            </Button>
-          )}
+
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, ml: 1, fontFamily: "Inter, sans-serif" }}
+          >
+            Amal Vatsa 21BCE3194 Puja Maheshwari 21BCE31972
+          </Typography>
+          
         </Toolbar>
       </AppBar>
     </Box>
